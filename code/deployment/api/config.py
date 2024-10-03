@@ -1,0 +1,1 @@
+class_names = ['cat', 'dog', 'horse', 'others']
