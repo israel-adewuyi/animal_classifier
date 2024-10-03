@@ -1,8 +1,20 @@
-# code/deployment/app/Dockerfile
-FROM python:3.8-slim
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
-COPY ./app.py /app/app.py
+# Set the working directory in the container
+WORKDIR /app
 
-RUN pip install streamlit requests Pillow
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-CMD ["streamlit", "run", "/app/app.py"]
+# Copy the shared requirements.txt file from the root
+COPY requirements.txt /app/requirements.txt
+
+# Install the dependencies from the shared requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the port Streamlit will run on
+EXPOSE 8501
+
+# Command to run Streamlit application
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]

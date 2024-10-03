@@ -77,7 +77,7 @@ state_dict = torch.load('C:/Users/Israel Adewuyi/Documents/PMLDL/animal_classifi
 model.load_state_dict(state_dict)
 model.eval()  # Set the model to evaluation mode
 
-class_names = ['cat', 'dog', 'horse']
+class_names = ['cat', 'dog', 'horse', 'others']
 
 def prepare_image(image: Image.Image):
     # Define the transformation

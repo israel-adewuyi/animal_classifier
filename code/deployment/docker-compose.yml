@@ -1,15 +1,22 @@
-# code/deployment/docker-compose.yml
 version: "3"
+
 services:
   api:
     build: ./api
-    container_name: api
     ports:
       - "8000:8000"
+    networks:
+      - app-network
+
   app:
     build: ./app
-    container_name: app
     ports:
       - "8501:8501"
     depends_on:
       - api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
