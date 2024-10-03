@@ -73,7 +73,7 @@ def MiniResNet34():
 model = MiniResNet34()
 
 # Load model
-state_dict = torch.load('C:/Users/Israel Adewuyi/Documents/PMLDL/animal_classifier/models/animal_classifier.pth', map_location=torch.device('cpu'))  # Load the PyTorch model
+state_dict = torch.load('models/animal_classifier.pth', map_location=torch.device('cpu'))  # Load the PyTorch model
 model.load_state_dict(state_dict)
 model.eval()  # Set the model to evaluation mode
 
