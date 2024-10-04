@@ -73,30 +73,29 @@ def MiniResNet34():
 model = MiniResNet34()
 
 # Load model
-state_dict = torch.load('models/animal_classifier.pth', map_location=torch.device('cpu'))  # Load the PyTorch model
+state_dict = torch.load('/models/animal_classifier.pth', map_location=torch.device('cpu'))  
 model.load_state_dict(state_dict)
-model.eval()  # Set the model to evaluation mode
+model.eval()  
 
 class_names = ['cat', 'dog', 'horse', 'others']
 
 def prepare_image(image: Image.Image):
-    # Define the transformation
     transform = transforms.Compose([
-        transforms.Resize((32, 32)),  # Resize to match model input
-        transforms.ToTensor(),  # Convert to tensor
-        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])  # Normalize
+        transforms.Resize((32, 32)),  
+        transforms.ToTensor(), 
+        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]) 
     ])
-    image = transform(image)  # Apply transformations
-    image = image.unsqueeze(0)  # Add batch dimension
+    image = transform(image) 
+    image = image.unsqueeze(0)  
     return image
 
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
-    image = Image.open(io.BytesIO(await file.read())).convert("RGB")  # Ensure image is RGB
+    image = Image.open(io.BytesIO(await file.read())).convert("RGB")  
     prepared_image = prepare_image(image)
     
-    with torch.no_grad():  # No gradient calculation for inference
-        predictions = model(prepared_image)  # Get model predictions
-        predicted_class = class_names[torch.argmax(predictions, dim=1).item()]  # Get class name
+    with torch.no_grad(): 
+        predictions = model(prepared_image)  
+        predicted_class = class_names[torch.argmax(predictions, dim=1).item()]  
     
     return {"prediction": predicted_class}
