@@ -4,23 +4,22 @@ This project demonstrates how to deploy a Convolutional Neural Network (CNN) mod
 
 # Project Structure
 
-graphql
-Copy code
 ├── code
-│ ├── datasets
-| │ └── animal_dataset.py # Script to generate the animal dataset
-│ ├── deployment
-│ │ ├── api
-│ │ │ ├── Dockerfile # Dockerfile for the FastAPI service
-│ │ │ └── main.py # FastAPI code for serving the model
-│ │ └── app
-│ │ ├── Dockerfile # Dockerfile for the Streamlit app
-│ │ └── app.py # Streamlit app for user interface
-│ └── models
-│ └── train_model.py # Script for training the animal classifier model
-├── data # Directory for any additional data
-├── models # Directory to store the trained model (e.g., animal_classifier.pth)
-└── docker-compose.yml # docker-compose file to manage the FastAPI and Streamlit services
+│   ├── datasets
+│   │   └── animal_dataset.py        # Script to generate the animal dataset
+│   ├── deployment
+│   │   ├── api
+│   │   │   ├── Dockerfile           # Dockerfile for the FastAPI service
+│   │   │   └── main.py              # FastAPI code for serving the model
+│   │   └── app
+│   │       ├── Dockerfile           # Dockerfile for the Streamlit app
+│   │       └── app.py               # Streamlit app for user interface
+│   └── models
+│       └── train_model.py           # Script for training the animal classifier model
+├── data                             # Directory for any additional data
+├── models                           # Directory to store the trained model (e.g., animal_classifier.pth)
+└── docker-compose.yml               # docker-compose file to manage the FastAPI and Streamlit services
+
 
 # Getting Started
 
